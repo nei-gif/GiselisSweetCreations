@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giselis Sweet Creations - Artisanal Desserts & Custom Cakes</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: 'var(--color-brand-50)',
+              100: 'var(--color-brand-100)',
+              200: 'var(--color-brand-200)',
+              500: 'var(--color-brand-500)',
+              600: 'var(--color-brand-600)',
+              700: 'var(--color-brand-700)',
+              accent: 'var(--color-brand-accent)',
+              accentHover: 'var(--color-brand-accent-hover)',
+              bg: 'var(--color-brand-bg)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* CSS Variables for Dynamic Customization */
+    :root {
+      --color-brand-50: #fdf2f4;
+      --color-brand-100: #fce7f3;
+      --color-brand-200: #fbcfe8;
+      --color-brand-500: #ec4899;
+      --color-brand-600: #db2777;
+      --color-brand-700: #be185d;
+      --color-brand-accent: #d97706; /* Gold accent */
+      --color-brand-accent-hover: #b45309;
+      --color-brand-bg: #fffafb;
+    }
+
+    body {
+      background-color: var(--color-brand-bg);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #f472b6;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ec4899;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+    
+    .gold-gradient {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #78350f 100%);
+    }
+
+    .sweet-shadow {
+      box-shadow: 0 10px 30px -10px rgba(236, 72, 153, 0.15);
+    }
+
+    /* Smooth Transitions */
+    .drawer-transition {
+      transition: transform 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between selection:bg-pink-200 selection:text-pink-900">
+
+  <!-- ================= ANNOUNCEMENT BANNER ================= -->
+  <div id="announcementBanner" class="bg-gradient-to-r from-pink-500 via-rose-400 to-amber-500 text-white text-xs md:text-sm font-medium py-2 px-4 text-center relative flex justify-center items-center gap-2 shadow-sm transition-all duration-300">
+    <i data-lucide="sparkles" class="w-4 h-4 animate-pulse"></i>
+    <span id="announcementText">✨ Now accepting custom order inquiries for holidays & special events! Book early.</span>
+    <button onclick="dismissAnnouncement()" class="absolute right-3 hover:opacity-75 focus:outline-none" aria-label="Close Announcement">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+  </div>
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="sticky top-0 z-30 glass-card border-b border-pink-100 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo & Store Name -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 text-white flex items-center justify-center shadow-md transform group-hover:scale-105 transition-transform duration-200 ring-2 ring-amber-300/60">
+          <i data-lucide="cake" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span id="storeTitle" class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-slate-900 group-hover:text-pink-600 transition-colors">
+            Giselis Sweet Creations
+          </span>
+          <p id="storeSubtitle" class="text-xs text-pink-600 tracking-wider uppercase font-semibold">Artisanal Bakery & Desserts</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+        <a href="#menuSection" class="hover:text-pink-600 transition-colors flex items-center gap-1">
+          <i data-lucide="utensils" class="w-4 h-4"></i> Menu
+        </a>
+        <a href="#customInquiry" class="hover:text-pink-600 transition-colors flex items-center gap-1">
+          <i data-lucide="wand2" class="w-4 h-4"></i> Custom Quotes
+        </a>
+        <a href="#faqSection" class="hover:text-pink-600 transition-colors flex items-center gap-1">
+          <i data-lucide="help-circle" class="w-4 h-4"></i> FAQ
+        </a>
+      </nav>
+
+      <!-- Right Action Icons -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Cart Button -->
+        <button id="cartBtn" onclick="toggleCartDrawer()" class="relative p-2.5 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-700 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-400" aria-label="Shopping Cart">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span id="cartBadge" class="absolute -top-1 -right-1 bg-amber-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+        </button>
+
+        <!-- Admin Customizer Toggle Button -->
+        <button onclick="toggleAdminDrawer()" class="p-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors focus:outline-none" title="Customize Store Theme & Items">
+          <i data-lucide="settings" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button onclick="toggleMobileNav()" class="md:hidden p-2.5 rounded-lg text-slate-700 hover:bg-pink-50" aria-label="Toggle Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNav" class="hidden md:hidden border-t border-pink-100 bg-white/95 px-4 pt-2 pb-4 space-y-3">
+      <a href="#menuSection" onclick="toggleMobileNav()" class="block py-2 text-slate-700 font-medium hover:text-pink-600">Dessert Menu</a>
+      <a href="#customInquiry" onclick="toggleMobileNav()" class="block py-2 text-slate-700 font-medium hover:text-pink-600">Custom Order Inquiry</a>
+      <a href="#faqSection" onclick="toggleMobileNav()" class="block py-2 text-slate-700 font-medium hover:text-pink-600">Frequently Asked Questions</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-pink-50/70 to-transparent">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          
+          <!-- Hero Text -->
+          <div class="space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100/80 text-pink-700 text-xs sm:text-sm font-semibold tracking-wide">
+              <i data-lucide="sparkles" class="w-4 h-4"></i> Baked Fresh Daily with Love
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight">
+              Handcrafted Sweets for <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-amber-600">Unforgettable</span> Moments
+            </h1>
+            
+            <p class="text-slate-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              From bespoke wedding cakes and gourmet cupcakes to full luxury dessert tables. Order your favorite treats or submit a inquiry for a personalized masterpiece!
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#menuSection" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-semibold shadow-lg shadow-pink-500/25 transition-all transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2">
+                <i data-lucide="shopping-bag" class="w-5 h-5"></i> Browse Menu
+              </a>
+              <a href="#customInquiry" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white hover:bg-slate-50 text-slate-800 font-semibold border border-slate-200 shadow-sm transition-all text-center flex items-center justify-center gap-2">
+                <i data-lucide="wand2" class="w-5 h-5 text-amber-500"></i> Request Custom Order
+              </a>
+            </div>
+
+            <!-- Quick Trust Badges -->
+            <div class="pt-6 border-t border-pink-100/60 grid grid-cols-3 gap-2 text-center">
+              <div>
+                <p class="font-bold text-slate-800 text-lg sm:text-xl font-serif">100%</p>
+                <p class="text-xs text-slate-500">Fresh Ingredients</p>
+              </div>
+              <div>
+                <p class="font-bold text-slate-800 text-lg sm:text-xl font-serif">500+</p>
+                <p class="text-xs text-slate-500">Events Served</p>
+              </div>
+              <div>
+                <p class="font-bold text-slate-800 text-lg sm:text-xl font-serif">5 ★</p>
+                <p class="text-xs text-slate-500">Sweet Reviews</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Image Grid -->
+          <div class="relative">
+            <div class="relative mx-auto max-w-md lg:max-w-none">
+              <!-- Decorative Backdrop circle -->
+              <div class="absolute -top-6 -left-6 w-72 h-72 bg-pink-200/50 rounded-full blur-3xl -z-10"></div>
+              <div class="absolute -bottom-6 -right-6 w-72 h-72 bg-amber-200/50 rounded-full blur-3xl -z-10"></div>
+              
+              <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-4">
+                  <div class="overflow-hidden rounded-2xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=600&q=80" alt="Custom Floral Cake" class="w-full h-48 sm:h-64 object-cover" loading="lazy">
+                  </div>
+                  <div class="overflow-hidden rounded-2xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Chocolate Cake" class="w-full h-36 sm:h-44 object-cover" loading="lazy">
+                  </div>
+                </div>
+                <div class="space-y-4 pt-8">
+                  <div class="overflow-hidden rounded-2xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80" alt="Gourmet Cupcakes" class="w-full h-36 sm:h-44 object-cover" loading="lazy">
+                  </div>
+                  <div class="overflow-hidden rounded-2xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=600&q=80" alt="Macarons" class="w-full h-48 sm:h-64 object-cover" loading="lazy">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating badge -->
+              <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 glass-card px-4 py-2.5 rounded-full shadow-lg border border-white/80 flex items-center gap-3">
+                <span class="flex h-3 w-3 relative">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <span class="text-xs font-semibold text-slate-800">Taking Custom Orders for Next Week!</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DESSERT MENU SECTION ================= -->
+    <section id="menuSection" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">Explore Our Sweet Menu</h2>
+        <p class="text-slate-600 mt-2">Select your favorite desserts to place a direct order or add custom preferences.</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div id="categoryTabs" class="flex items-center justify-center flex-wrap gap-2 mb-10">
+        <!-- Dynamically Populated -->
+      </div>
+
+      <!-- Dessert Items Grid -->
+      <div id="menuGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Dynamically Populated via Javascript -->
+      </div>
+    </section>
+
+    <!-- ================= CUSTOM ORDER / INQUIRY FORM ================= -->
+    <section id="customInquiry" class="py-16 bg-gradient-to-b from-transparent via-pink-50/50 to-transparent">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-xl border border-pink-100">
+          
+          <div class="text-center max-w-xl mx-auto mb-8">
+            <div class="w-12 h-12 rounded-full bg-pink-100 text-pink-600 mx-auto flex items-center justify-center mb-3">
+              <i data-lucide="wand2" class="w-6 h-6"></i>
+            </div>
+            <h2 class="font-serif text-3xl font-bold text-slate-900">Custom Order Inquiry</h2>
+            <p class="text-slate-600 text-sm mt-2">Planning a birthday, wedding, baby shower, or corporate event? Fill out the details below for a custom quote & design consultation!</p>
+          </div>
+
+          <form id="inquiryForm" onsubmit="handleInquirySubmit(event)" class="space-y-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Name -->
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Your Name *</label>
+                <input type="text" required placeholder="Gisel Rivera" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-pink-400 focus:outline-none transition-all text-sm">
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Email Address *</label>
+                <input type="email" required placeholder="gisel@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-pink-400 focus:outline-none transition-all text-sm">
+              </div>
+
+              <!-- Phone / WhatsApp -->
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Phone / WhatsApp *</label>
+                <input type="tel" required placeholder="(555) 000-0000" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-pink-400 focus:outline-none transition-all text-sm">
+              </div>
+
+              <!-- Event Date -->
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Event Date *</label>
+                <input type="date" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-pink-400 focus:outline-none transition-all text-sm text-slate-700">
+              </div>
+
+              <!-- Guest Count -->
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Guest Count</label>
+                <input type="number" min="1" placeholder="e.g. 25-50 guests" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-pink-400 focus:outline-none transition-all text-sm">
+              </div>
+
+              <!-- Service Type -->
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Service Type *</label>
+                <select required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-pink-400 focus:outline-none transition-all text-sm text-slate-700">
+                  <option value="">Select Service...</option>
+                  <option value="Custom Cake">Custom Cake (Tiered / Sculpted)</option>
+                  <option value="Dessert Table Package">Full Dessert Table Package</option>
+                  <option value="Cupcakes & Cake Pops">Cupcakes & Party Treats</option>
+                  <option value="Bridal/Wedding Package">Wedding Cake & Desserts</option>
+                  <option value="Other / General Inquiry">Other / General Question</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Budget Range -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Estimated Budget Range</label>
+              <select class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-pink-400 focus:outline-none transition-all text-sm text-slate-700">
+                <option value="Under $100">Under $100</option>
+                <option value="$100 - $250" selected>$100 - $250</option>
+                <option value="$250 - $500">$250 - $500</option>
+                <option value="$500+">$500+</option>
+              </select>
+            </div>
+
+            <!-- Details & Theme -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Event Theme & Flavor Preferences *</label>
+              <textarea required rows="4" placeholder="Describe your vision (e.g. Floral pink theme, Vanilla sponge with passion fruit filling, gold accents)..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-pink-400 focus:outline-none transition-all text-sm"></textarea>
+            </div>
+
+            <!-- File Upload Simulation -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Inspiration Photos (Optional)</label>
+              <div class="border-2 border-dashed border-slate-200 rounded-xl p-4 text-center hover:bg-pink-50/50 transition-colors cursor-pointer" onclick="document.getElementById('fileInput').click()">
+                <i data-lucide="upload-cloud" class="w-6 h-6 text-slate-400 mx-auto mb-1"></i>
+                <p class="text-xs text-slate-600 font-medium">Click to attach photo ideas or Pinterest screenshots</p>
+                <p id="fileNameDisplay" class="text-xs text-pink-600 mt-1 font-semibold"></p>
+                <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="handleFileSelected(event)">
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+              <button type="submit" class="flex-1 py-3.5 px-6 rounded-xl bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-md transition-colors flex items-center justify-center gap-2">
+                <i data-lucide="send" class="w-4 h-4"></i> Submit Inquiry Request
+              </button>
+              <button type="button" onclick="sendInquiryWhatsApp()" class="py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-md transition-colors flex items-center justify-center gap-2">
+                <i data-lucide="message-circle" class="w-4 h-4"></i> Send via WhatsApp
+              </button>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= FAQ SECTION ================= -->
+    <section id="faqSection" class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="font-serif text-3xl font-bold text-slate-900">Frequently Asked Questions</h2>
+        <p class="text-slate-600 text-sm mt-2">Everything you need to know about ordering, pickup, and custom designs.</p>
+      </div>
+
+      <div class="space-y-4" id="faqAccordion">
+        
+        <!-- FAQ 1 -->
+        <div class="border border-pink-100 rounded-2xl bg-white overflow-hidden shadow-sm">
+          <button onclick="toggleFaq(1)" class="w-full px-6 py-4 text-left font-semibold text-slate-800 flex justify-between items-center hover:bg-pink-50/50 transition-colors">
+            <span>How far in advance should I place my order?</span>
+            <i id="faqIcon-1" data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+          </button>
+          <div id="faqAnswer-1" class="hidden px-6 pb-4 text-sm text-slate-600 border-t border-slate-50 pt-3">
+            For menu items, please give us at least 48 to 72 hours notice. For custom cakes and large dessert tables, we recommend booking 2–4 weeks in advance to ensure date availability!
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="border border-pink-100 rounded-2xl bg-white overflow-hidden shadow-sm">
+          <button onclick="toggleFaq(2)" class="w-full px-6 py-4 text-left font-semibold text-slate-800 flex justify-between items-center hover:bg-pink-50/50 transition-colors">
+            <span>Do you offer local delivery or pickup?</span>
+            <i id="faqIcon-2" data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+          </button>
+          <div id="faqAnswer-2" class="hidden px-6 pb-4 text-sm text-slate-600 border-t border-slate-50 pt-3">
+            Yes! We offer local pickup at our bakery workspace as well as venue delivery for larger event orders and multi-tiered custom cakes.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="border border-pink-100 rounded-2xl bg-white overflow-hidden shadow-sm">
+          <button onclick="toggleFaq(3)" class="w-full px-6 py-4 text-left font-semibold text-slate-800 flex justify-between items-center hover:bg-pink-50/50 transition-colors">
+            <span>Can you accommodate dietary restrictions (Gluten-Free, Nut-Free, Vegan)?</span>
+            <i id="faqIcon-3" data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform"></i>
+          </button>
+          <div id="faqAnswer-3" class="hidden px-6 pb-4 text-sm text-slate-600 border-t border-slate-50 pt-3">
+            We offer select gluten-friendly and nut-free dessert options upon request. Please note your dietary requirements in the order/inquiry form so we can handle them with care!
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-900 text-white pt-12 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        
+        <!-- Brand Info -->
+        <div class="space-y-3 md:col-span-1">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center text-white">
+              <i data-lucide="cake" class="w-4 h-4"></i>
+            </div>
+            <span id="footerTitle" class="font-serif font-bold text-lg">Giselis Sweet Creations</span>
+          </div>
+          <p id="footerSubtitle" class="text-xs text-slate-400 leading-relaxed">
+            Crafting memorable desserts and bespoke cakes for birthdays, weddings, and every sweet occasion in between.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-semibold text-sm text-slate-200 mb-3 uppercase tracking-wider">Quick Links</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li><a href="#menuSection" class="hover:text-pink-400">Dessert Menu</a></li>
+            <li><a href="#customInquiry" class="hover:text-pink-400">Custom Order Request</a></li>
+            <li><a href="#faqSection" class="hover:text-pink-400">Ordering FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4 class="font-semibold text-sm text-slate-200 mb-3 uppercase tracking-wider">Get In Touch</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-pink-400"></i>
+              <span id="footerEmail">info@giselissweetcreations.com</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-4 h-4 text-pink-400"></i>
+              <span id="footerPhone">(555) 839-2253</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="map-pin" class="w-4 h-4 text-pink-400"></i>
+              <span>Available for local orders & events</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Links -->
+        <div>
+          <h4 class="font-semibold text-sm text-slate-200 mb-3 uppercase tracking-wider">Follow Us</h4>
+          <div class="flex gap-3">
+            <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-pink-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-pink-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-pink-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+        © <span id="yearSpan"></span> Giselis Sweet Creations. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= SHOPPING CART DRAWER ================= -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 pointer-events-none">
+    <!-- Backdrop -->
+    <div id="cartBackdrop" onclick="toggleCartDrawer()" class="absolute inset-0 bg-slate-900/40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- Drawer Content -->
+    <div id="cartPanel" class="absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full drawer-transition pointer-events-auto flex flex-col justify-between">
+      
+      <!-- Cart Header -->
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-pink-50/50">
+        <div class="flex items-center gap-2">
+          <i data-lucide="shopping-bag" class="w-5 h-5 text-pink-600"></i>
+          <h3 class="font-serif font-bold text-lg text-slate-800">Your Sweet Order</h3>
+        </div>
+        <button onclick="toggleCartDrawer()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Cart Items List -->
+      <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <!-- Cart Footer / Checkout -->
+      <div class="p-6 border-t border-slate-100 bg-slate-50 space-y-4">
+        
+        <!-- Custom Notes Input -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Order Notes / Writing on Cake / Allergies:</label>
+          <textarea id="cartNotes" rows="2" placeholder="e.g. Please write 'Happy 25th Birthday Sofia!' on the cake" class="w-full text-xs p-2.5 rounded-lg border border-slate-200 focus:ring-1 focus:ring-pink-400 focus:outline-none"></textarea>
+        </div>
+
+        <!-- Totals -->
+        <div class="space-y-1 pt-2">
+          <div class="flex justify-between text-sm text-slate-600">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-semibold">$0.00</span>
+          </div>
+          <div class="flex justify-between text-base font-bold text-slate-900 pt-1 border-t border-slate-200">
+            <span>Total</span>
+            <span id="cartTotal" class="text-pink-600 font-serif text-lg">$0.00</span>
+          </div>
+        </div>
+
+        <!-- Checkout Buttons -->
+        <div class="space-y-2 pt-2">
+          <button onclick="checkoutViaWhatsApp()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-sm">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Order via WhatsApp
+          </button>
+          <button onclick="checkoutViaEmail()" class="w-full py-3 rounded-xl bg-pink-600 hover:bg-pink-700 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-sm">
+            <i data-lucide="mail" class="w-4 h-4"></i> Submit Order Email Inquiry
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= PRODUCT OPTIONS / ADD MODAL ================= -->
+  <div id="productModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transform transition-all relative">
+      <button onclick="closeProductModal()" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-slate-600 flex items-center justify-center shadow-md">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div id="modalImageContainer" class="h-48 sm:h-56 w-full relative">
+        <img id="modalImg" src="" alt="" class="w-full h-full object-cover">
+        <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-pink-600" id="modalCategory">
+        </div>
+      </div>
+
+      <div class="p-6 space-y-4">
+        <div>
+          <h3 id="modalTitle" class="font-serif text-2xl font-bold text-slate-900"></h3>
+          <p id="modalDescription" class="text-xs sm:text-sm text-slate-600 mt-1"></p>
+        </div>
+
+        <!-- Size / Option Selector -->
+        <div id="sizeOptionsContainer">
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Select Option / Size</label>
+          <div id="sizeOptions" class="grid grid-cols-2 gap-2">
+            <!-- Options populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Specific Custom Text -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Custom Request / Flavor Note</label>
+          <input type="text" id="modalNote" placeholder="e.g. Vanilla sponge, reduced sugar" class="w-full text-xs p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-pink-400 focus:outline-none">
+        </div>
+
+        <!-- Quantity & Add to Cart -->
+        <div class="flex items-center gap-4 pt-2">
+          <div class="flex items-center border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+            <button onclick="adjustModalQty(-1)" class="px-3 py-2 text-slate-600 hover:bg-slate-200 font-bold">-</button>
+            <span id="modalQty" class="px-3 py-2 font-semibold text-sm w-10 text-center">1</span>
+            <button onclick="adjustModalQty(1)" class="px-3 py-2 text-slate-600 hover:bg-slate-200 font-bold">+</button>
+          </div>
+
+          <button id="addToCartModalBtn" onclick="confirmAddToCart()" class="flex-1 py-3 px-6 rounded-xl bg-pink-600 hover:bg-pink-700 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-md">
+            <i data-lucide="plus" class="w-4 h-4"></i> Add to Order • <span id="modalPrice">$0.00</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ADMIN / STORE CUSTOMIZER DRAWER ================= -->
+  <div id="adminDrawer" class="fixed inset-0 z-50 pointer-events-none">
+    <div id="adminBackdrop" onclick="toggleAdminDrawer()" class="absolute inset-0 bg-slate-900/40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <div id="adminPanel" class="absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full drawer-transition pointer-events-auto flex flex-col justify-between">
+      
+      <!-- Admin Header -->
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-900 text-white">
+        <div class="flex items-center gap-2">
+          <i data-lucide="settings" class="w-5 h-5 text-amber-400"></i>
+          <div>
+            <h3 class="font-serif font-bold text-base">Store Customizer</h3>
+            <p class="text-[10px] text-slate-400">Live customization & Local Storage settings</p>
+          </div>
+        </div>
+        <button onclick="toggleAdminDrawer()" class="p-1 rounded-lg text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Admin Tab Control -->
+      <div class="flex border-b border-slate-100 text-xs font-semibold bg-slate-50">
+        <button onclick="switchAdminTab('branding')" id="tabBtnBranding" class="flex-1 py-3 border-b-2 border-pink-600 text-pink-600">
+          Branding & Contact
+        </button>
+        <button onclick="switchAdminTab('menu')" id="tabBtnMenu" class="flex-1 py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800">
+          Manage Menu
+        </button>
+      </div>
+
+      <!-- Admin Drawer Scrollable Body -->
+      <div class="flex-1 overflow-y-auto p-6 space-y-6 text-xs">
+        
+        <!-- TAB 1: BRANDING & COLORS -->
+        <div id="adminTabBranding" class="space-y-4">
+          
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Store Name</label>
+            <input type="text" id="adminStoreTitle" class="w-full p-2.5 rounded-lg border border-slate-200">
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Tagline / Subtitle</label>
+            <input type="text" id="adminStoreSubtitle" class="w-full p-2.5 rounded-lg border border-slate-200">
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Announcement Banner Text</label>
+            <input type="text" id="adminAnnouncement" class="w-full p-2.5 rounded-lg border border-slate-200">
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Contact Email</label>
+              <input type="email" id="adminEmail" class="w-full p-2.5 rounded-lg border border-slate-200">
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">WhatsApp / Phone</label>
+              <input type="text" id="adminPhone" class="w-full p-2.5 rounded-lg border border-slate-200">
+            </div>
+          </div>
+
+          <!-- Color Presets -->
+          <div class="pt-2 border-t border-slate-100">
+            <label class="block font-bold text-slate-700 mb-2">Theme Color Accent</label>
+            <div class="flex items-center gap-3">
+              <button onclick="setThemePreset('pink')" class="w-8 h-8 rounded-full bg-pink-500 ring-2 ring-offset-2 ring-pink-500 focus:outline-none"></button>
+              <button onclick="setThemePreset('rose')" class="w-8 h-8 rounded-full bg-rose-600 hover:ring-2 hover:ring-offset-2 ring-rose-600 focus:outline-none"></button>
+              <button onclick="setThemePreset('amber')" class="w-8 h-8 rounded-full bg-amber-500 hover:ring-2 hover:ring-offset-2 ring-amber-500 focus:outline-none"></button>
+              <button onclick="setThemePreset('purple')" class="w-8 h-8 rounded-full bg-purple-600 hover:ring-2 hover:ring-offset-2 ring-purple-600 focus:outline-none"></button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 2: MANAGE MENU ITEMS -->
+        <div id="adminTabMenu" class="hidden space-y-4">
+          
+          <div class="bg-pink-50 p-3 rounded-xl border border-pink-100">
+            <h4 class="font-bold text-pink-800 mb-2">Add New Dessert Item</h4>
+            <div class="space-y-2">
+              <input type="text" id="newItemTitle" placeholder="Item Name (e.g. Red Velvet Cupcake)" class="w-full p-2 rounded-lg border border-slate-200 text-xs">
+              <div class="grid grid-cols-2 gap-2">
+                <input type="number" id="newItemPrice" step="0.01" placeholder="Base Price ($)" class="w-full p-2 rounded-lg border border-slate-200 text-xs">
+                <select id="newItemCategory" class="w-full p-2 rounded-lg border border-slate-200 text-xs">
+                  <option value="Custom Cakes">Custom Cakes</option>
+                  <option value="Cupcakes">Cupcakes</option>
+                  <option value="Dessert Tables">Dessert Tables</option>
+                  <option value="Cookies & Pastries">Cookies & Pastries</option>
+                </select>
+              </div>
+              <textarea id="newItemDesc" placeholder="Short description..." rows="2" class="w-full p-2 rounded-lg border border-slate-200 text-xs"></textarea>
+              <input type="text" id="newItemImg" placeholder="Image URL (Unsplash or direct link)" class="w-full p-2 rounded-lg border border-slate-200 text-xs">
+              <button onclick="addNewMenuItem()" class="w-full py-2 bg-pink-600 hover:bg-pink-700 text-white font-semibold rounded-lg text-xs flex items-center justify-center gap-1">
+                <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> Add to Store Menu
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-slate-700 mb-2">Existing Items List</h4>
+            <div id="adminMenuList" class="space-y-2 max-h-60 overflow-y-auto">
+              <!-- Dynamically Populated -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Admin Actions Footer -->
+      <div class="p-4 border-t border-slate-100 bg-slate-50 space-y-2">
+        <button onclick="saveAdminChanges()" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs flex items-center justify-center gap-2">
+          <i data-lucide="save" class="w-4 h-4"></i> Save Settings to LocalStorage
+        </button>
+        <button onclick="resetAdminDefaults()" class="w-full py-2 rounded-xl text-slate-500 hover:text-slate-700 text-xs font-medium">
+          Reset All Defaults
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs sm:text-sm">
+      <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i>
+      <span id="toastMessage">Item added to order!</span>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // --- DEFAULT INITIAL STORE DATA ---
+    const DEFAULT_STORE = {
+      title: "Giselis Sweet Creations",
+      subtitle: "Artisanal Bakery & Desserts",
+      email: "info@giselissweetcreations.com",
+      phone: "+1 (555) 839-2253",
+      announcement: "✨ Now accepting custom order inquiries for holidays & special events! Book early.",
+      menu: [
+        {
+          id: "c1",
+          title: "Custom Floral Tiered Cake",
+          category: "Custom Cakes",
+          price: 120.00,
+          description: "Handcrafted celebration cake with vanilla buttercream, edible gold accents, and fresh floral arrangement.",
+          image: "https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=600&q=80",
+          options: [
+            { name: "6 Inch (Serves 8-10)", price: 120.00 },
+            { name: "8 Inch (Serves 16-20)", price: 165.00 },
+            { name: "2-Tier (Serves 30+)", price: 240.00 }
+          ]
+        },
+        {
+          id: "c2",
+          title: "Gourmet Cupcake Dozen",
+          category: "Cupcakes",
+          price: 42.00,
+          description: "Assorted box of 12 fresh cupcakes featuring Red Velvet, Dulce de Leche, and Salted Caramel.",
+          image: "https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80",
+          options: [
+            { name: "Half Dozen (6)", price: 22.00 },
+            { name: "Full Dozen (12)", price: 42.00 },
+            { name: "Two Dozen (24)", price: 78.00 }
+          ]
+        },
+        {
+          id: "c3",
+          title: "French Macaron Gift Box",
+          category: "Cookies & Pastries",
+          price: 32.00,
+          description: "Delicate french macarons with pistachio, raspberry, vanilla bean, and chocolate ganache fillings.",
+          image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=600&q=80",
+          options: [
+            { name: "Box of 12", price: 32.00 },
+            { name: "Box of 24", price: 60.00 }
+          ]
+        },
+        {
+          id: "c4",
+          title: "Luxury Dessert Table Package",
+          category: "Dessert Tables",
+          price: 350.00,
+          description: "Complete spread including mini shooters, cake pops, macaron tower, and customized dessert displays.",
+          image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80",
+          options: [
+            { name: "Small Party (20-30 guests)", price: 350.00 },
+            { name: "Grand Celebration (50+ guests)", price: 650.00 }
+          ]
+        },
+        {
+          id: "c5",
+          title: "Decadent Chocolate Drip Cake",
+          category: "Custom Cakes",
+          price: 95.00,
+          description: "Rich dark chocolate sponge layered with Belgian ganache and topped with assorted chocolates.",
+          image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80",
+          options: [
+            { name: "6 Inch Standard", price: 95.00 },
+            { name: "8 Inch Large", price: 135.00 }
+          ]
+        },
+        {
+          id: "c6",
+          title: "Artisanal Sugar Cookies",
+          category: "Cookies & Pastries",
+          price: 38.00,
+          description: "Custom decorated royal icing cookies tailored to your party theme.",
+          image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80",
+          options: [
+            { name: "1 Dozen Custom", price: 38.00 },
+            { name: "2 Dozen Custom", price: 72.00 }
+          ]
+        }
+      ]
+    };
+
+    // --- APPLICATION STATE ---
+    let storeData = JSON.parse(localStorage.getItem('giselis_store_data')) || DEFAULT_STORE;
+    let cart = JSON.parse(localStorage.getItem('giselis_cart')) || [];
+    let currentCategory = 'All';
+    let selectedModalProduct = null;
+    let selectedModalOption = null;
+    let modalQuantity = 1;
+
+    // --- INITIALIZATION ---
+    window.onload = function() {
+      document.getElementById('yearSpan').textContent = new Date().getFullYear();
+      renderStoreData();
+      renderMenu();
+      renderCart();
+      lucide.createIcons();
+    };
+
+    // --- RENDER FUNCTIONS ---
+    function renderStoreData() {
+      document.getElementById('storeTitle').textContent = storeData.title;
+      document.getElementById('storeSubtitle').textContent = storeData.subtitle;
+      document.getElementById('announcementText').textContent = storeData.announcement;
+      document.getElementById('footerTitle').textContent = storeData.title;
+      document.getElementById('footerSubtitle').textContent = storeData.subtitle;
+      document.getElementById('footerEmail').textContent = storeData.email;
+      document.getElementById('footerPhone').textContent = storeData.phone;
+
+      // Populate Admin Form Inputs
+      document.getElementById('adminStoreTitle').value = storeData.title;
+      document.getElementById('adminStoreSubtitle').value = storeData.subtitle;
+      document.getElementById('adminAnnouncement').value = storeData.announcement;
+      document.getElementById('adminEmail').value = storeData.email;
+      document.getElementById('adminPhone').value = storeData.phone;
+
+      renderAdminMenuList();
+    }
+
+    function renderMenu() {
+      const grid = document.getElementById('menuGrid');
+      const tabs = document.getElementById('categoryTabs');
+
+      // Extract unique categories
+      const categories = ['All', ...new Set(storeData.menu.map(item => item.category))];
+
+      // Render Category Filter Tabs
+      tabs.innerHTML = categories.map(cat => `
+        <button onclick="setCategory('${cat}')" class="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
+          currentCategory === cat 
+            ? 'bg-pink-600 text-white shadow-md shadow-pink-500/20' 
+            : 'bg-white text-slate-600 hover:bg-pink-50 border border-slate-100'
+        }">
+          ${cat}
+        </button>
+      `).join('');
+
+      // Filter products
+      const filtered = currentCategory === 'All' 
+        ? storeData.menu 
+        : storeData.menu.filter(item => item.category === currentCategory);
+
+      // Render Menu Items
+      grid.innerHTML = filtered.map(item => `
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-pink-100 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-56 overflow-hidden">
+              <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.src='https://placehold.co/600x400/fce7f3/db2777?text=Giselis+Dessert'">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-pink-600 shadow-sm">
+                ${item.category}
+              </span>
+            </div>
+            
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="font-serif text-xl font-bold text-slate-900 group-hover:text-pink-600 transition-colors">${item.title}</h3>
+                <span class="font-bold text-pink-600 text-lg font-serif">from $${item.price.toFixed(2)}</span>
+              </div>
+              <p class="text-slate-600 text-xs sm:text-sm line-clamp-2 leading-relaxed">${item.description}</p>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 pt-0">
+            <button onclick="openProductModal('${item.id}')" class="w-full py-3 rounded-2xl bg-pink-50 hover:bg-pink-600 text-pink-700 hover:text-white font-semibold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2">
+              <i data-lucide="plus" class="w-4 h-4"></i> Add to Order
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      renderMenu();
+    }
+
+    // --- MODAL FUNCTIONS ---
+    function openProductModal(productId) {
+      const product = storeData.menu.find(p => p.id === productId);
+      if (!product) return;
+
+      selectedModalProduct = product;
+      modalQuantity = 1;
+
+      document.getElementById('modalTitle').textContent = product.title;
+      document.getElementById('modalDescription').textContent = product.description;
+      document.getElementById('modalImg').src = product.image;
+      document.getElementById('modalCategory').textContent = product.category;
+      document.getElementById('modalQty').textContent = modalQuantity;
+      document.getElementById('modalNote').value = '';
+
+      const optionsContainer = document.getElementById('sizeOptions');
+      if (product.options && product.options.length > 0) {
+        selectedModalOption = product.options[0];
+        optionsContainer.innerHTML = product.options.map((opt, idx) => `
+          <button type="button" onclick="selectModalOption(${idx})" id="modalOptBtn-${idx}" class="p-2.5 rounded-xl border text-xs text-left font-medium transition-all ${
+            idx === 0 ? 'border-pink-600 bg-pink-50 text-pink-700' : 'border-slate-200 hover:bg-slate-50 text-slate-700'
+          }">
+            <div class="font-bold">${opt.name}</div>
+            <div class="text-slate-500">$${opt.price.toFixed(2)}</div>
+          </button>
+        `).join('');
+      } else {
+        selectedModalOption = { name: 'Standard', price: product.price };
+        optionsContainer.innerHTML = `<div class="text-xs text-slate-500 italic">Standard portion ($${product.price.toFixed(2)})</div>`;
+      }
+
+      updateModalPrice();
+      document.getElementById('productModal').classList.remove('hidden');
+    }
+
+    function selectModalOption(index) {
+      selectedModalOption = selectedModalProduct.options[index];
+      selectedModalProduct.options.forEach((_, idx) => {
+        const btn = document.getElementById(`modalOptBtn-${idx}`);
+        if (btn) {
+          if (idx === index) {
+            btn.className = 'p-2.5 rounded-xl border text-xs text-left font-medium transition-all border-pink-600 bg-pink-50 text-pink-700';
+          } else {
+            btn.className = 'p-2.5 rounded-xl border text-xs text-left font-medium transition-all border-slate-200 hover:bg-slate-50 text-slate-700';
+          }
+        }
+      });
+      updateModalPrice();
+    }
+
+    function adjustModalQty(delta) {
+      modalQuantity = Math.max(1, modalQuantity + delta);
+      document.getElementById('modalQty').textContent = modalQuantity;
+      updateModalPrice();
+    }
+
+    function updateModalPrice() {
+      const price = selectedModalOption ? selectedModalOption.price : selectedModalProduct.price;
+      const total = price * modalQuantity;
+      document.getElementById('modalPrice').textContent = `$${total.toFixed(2)}`;
+    }
+
+    function closeProductModal() {
+      document.getElementById('productModal').classList.add('hidden');
+    }
+
+    function confirmAddToCart() {
+      const note = document.getElementById('modalNote').value.trim();
+      const cartItem = {
+        cartId: Date.now().toString(),
+        productId: selectedModalProduct.id,
+        title: selectedModalProduct.title,
+        optionName: selectedModalOption ? selectedModalOption.name : 'Standard',
+        unitPrice: selectedModalOption ? selectedModalOption.price : selectedModalProduct.price,
+        quantity: modalQuantity,
+        note: note,
+        image: selectedModalProduct.image
+      };
+
+      cart.push(cartItem);
+      saveCart();
+      closeProductModal();
+      showToast(`${selectedModalProduct.title} added to cart!`);
+      toggleCartDrawer(true);
+    }
+
+    // --- CART DRAWER & LOGIC ---
+    function renderCart() {
+      const container = document.getElementById('cartItemsContainer');
+      const badge = document.getElementById('cartBadge');
+      
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      if (totalCount > 0) {
+        badge.textContent = totalCount;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-slate-400 space-y-3">
+            <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto stroke-1"></i>
+            <p class="text-sm">Your dessert cart is empty.</p>
+            <a href="#menuSection" onclick="toggleCartDrawer()" class="inline-block text-xs text-pink-600 font-bold underline">Browse Sweets</a>
+          </div>
+        `;
+      } else {
+        container.innerHTML = cart.map(item => `
+          <div class="flex gap-3 bg-pink-50/40 p-3 rounded-2xl border border-pink-100/60 relative">
+            <img src="${item.image}" class="w-16 h-16 rounded-xl object-cover" alt="">
+            <div class="flex-1 text-xs">
+              <h4 class="font-bold text-slate-800">${item.title}</h4>
+              <p class="text-slate-500">${item.optionName}</p>
+              ${item.note ? `<p class="text-[11px] text-pink-600 italic mt-0.5">"${item.note}"</p>` : ''}
+              <div class="flex items-center justify-between mt-2">
+                <span class="font-semibold text-slate-800">$${(item.unitPrice * item.quantity).toFixed(2)}</span>
+                <div class="flex items-center gap-1 bg-white rounded-lg border border-slate-200">
+                  <button onclick="updateCartQty('${item.cartId}', -1)" class="px-2 py-0.5 text-slate-500 font-bold">-</button>
+                  <span class="px-1 font-semibold">${item.quantity}</span>
+                  <button onclick="updateCartQty('${item.cartId}', 1)" class="px-2 py-0.5 text-slate-500 font-bold">+</button>
+                </div>
+              </div>
+            </div>
+            <button onclick="removeCartItem('${item.cartId}')" class="text-slate-400 hover:text-rose-500 p-1">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        `).join('');
+      }
+
+      const subtotal = cart.reduce((sum, item) => sum + (item.unitPrice * item.quantity), 0);
+      document.getElementById('cartSubtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('cartTotal').textContent = `$${subtotal.toFixed(2)}`;
+
+      lucide.createIcons();
+    }
+
+    function updateCartQty(cartId, delta) {
+      const item = cart.find(i => i.cartId === cartId);
+      if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+          cart = cart.filter(i => i.cartId !== cartId);
+        }
+        saveCart();
+      }
+    }
+
+    function removeCartItem(cartId) {
+      cart = cart.filter(i => i.cartId !== cartId);
+      saveCart();
+    }
+
+    function saveCart() {
+      localStorage.setItem('giselis_cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function toggleCartDrawer(forceOpen = false) {
+      const panel = document.getElementById('cartPanel');
+      const backdrop = document.getElementById('cartBackdrop');
+      
+      const isClosed = panel.classList.contains('translate-x-full');
+      if (isClosed || forceOpen) {
+        panel.classList.remove('translate-x-full');
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        panel.classList.add('translate-x-full');
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    // --- CHECKOUT OPTIONS ---
+    function buildOrderSummaryText() {
+      let text = ` Hello ${storeData.title}! I would like to place an order:\n\n`;
+      cart.forEach((item, idx) => {
+        text += `${idx + 1}. ${item.title} (${item.optionName}) x${item.quantity} - $${(item.unitPrice * item.quantity).toFixed(2)}\n`;
+        if (item.note) text += `   Note: ${item.note}\n`;
+      });
+      const subtotal = cart.reduce((sum, item) => sum + (item.unitPrice * item.quantity), 0);
+      text += `\n*Total Estimated:* $${subtotal.toFixed(2)}\n`;
+
+      const extraNotes = document.getElementById('cartNotes').value.trim();
+      if (extraNotes) text += `*Special Instructions:* ${extraNotes}\n`;
+
+      return encodeURIComponent(text);
+    }
+
+    function checkoutViaWhatsApp() {
+      if (cart.length === 0) return alert('Your cart is empty!');
+      const cleanPhone = storeData.phone.replace(/[^0-9]/g, '');
+      const message = buildOrderSummaryText();
+      window.open(`https://wa.me/${cleanPhone}?text=${message}`, '_blank');
+    }
+
+    function checkoutViaEmail() {
+      if (cart.length === 0) return alert('Your cart is empty!');
+      const message = buildOrderSummaryText();
+      window.location.href = `mailto:${storeData.email}?subject=New Dessert Order Request&body=${message}`;
+    }
+
+    // --- INQUIRY FORM HANDLERS ---
+    function handleInquirySubmit(e) {
+      e.preventDefault();
+      showToast("Thank you! Your custom order inquiry has been sent.");
+      e.target.reset();
+      document.getElementById('fileNameDisplay').textContent = '';
+    }
+
+    function sendInquiryWhatsApp() {
+      const cleanPhone = storeData.phone.replace(/[^0-9]/g, '');
+      const msg = encodeURIComponent(`Hi Giselis! I'd like to make a custom event inquiry. Please check my details.`);
+      window.open(`https://wa.me/${cleanPhone}?text=${msg}`, '_blank');
+    }
+
+    function handleFileSelected(e) {
+      const file = e.target.files[0];
+      if (file) {
+        document.getElementById('fileNameDisplay').textContent = `Attached: ${file.name}`;
+      }
+    }
+
+    // --- ADMIN / CUSTOMIZER DRAWER ---
+    function toggleAdminDrawer() {
+      const panel = document.getElementById('adminPanel');
+      const backdrop = document.getElementById('adminBackdrop');
+      
+      const isClosed = panel.classList.contains('translate-x-full');
+      if (isClosed) {
+        panel.classList.remove('translate-x-full');
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        panel.classList.add('translate-x-full');
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    function switchAdminTab(tab) {
+      const brandingTab = document.getElementById('adminTabBranding');
+      const menuTab = document.getElementById('adminTabMenu');
+      const btnBranding = document.getElementById('tabBtnBranding');
+      const btnMenu = document.getElementById('tabBtnMenu');
+
+      if (tab === 'branding') {
+        brandingTab.classList.remove('hidden');
+        menuTab.classList.add('hidden');
+        btnBranding.className = 'flex-1 py-3 border-b-2 border-pink-600 text-pink-600';
+        btnMenu.className = 'flex-1 py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800';
+      } else {
+        brandingTab.classList.add('hidden');
+        menuTab.classList.remove('hidden');
+        btnMenu.className = 'flex-1 py-3 border-b-2 border-pink-600 text-pink-600';
+        btnBranding.className = 'flex-1 py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800';
+      }
+    }
+
+    function renderAdminMenuList() {
+      const container = document.getElementById('adminMenuList');
+      container.innerHTML = storeData.menu.map((item, idx) => `
+        <div class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 flex items-center justify-between">
+          <div class="truncate max-w-[200px]">
+            <p class="font-bold text-slate-800 truncate">${item.title}</p>
+            <p class="text-[10px] text-slate-500">$${item.price.toFixed(2)} • ${item.category}</p>
+          </div>
+          <button onclick="deleteMenuItem(${idx})" class="text-rose-500 hover:text-rose-700 p-1">
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
+          </button>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function addNewMenuItem() {
+      const title = document.getElementById('newItemTitle').value.trim();
+      const price = parseFloat(document.getElementById('newItemPrice').value);
+      const category = document.getElementById('newItemCategory').value;
+      const desc = document.getElementById('newItemDesc').value.trim();
+      let img = document.getElementById('newItemImg').value.trim();
+
+      if (!title || isNaN(price)) {
+        alert('Please provide a valid item name and price.');
+        return;
+      }
+
+      if (!img) {
+        img = "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80";
+      }
+
+      const newItem = {
+        id: 'c' + Date.now(),
+        title: title,
+        category: category,
+        price: price,
+        description: desc || "Artisanal homemade creation.",
+        image: img,
+        options: [
+          { name: "Standard Portion", price: price }
+        ]
+      };
+
+      storeData.menu.push(newItem);
+      renderAdminMenuList();
+      renderMenu();
+
+      // Reset Form
+      document.getElementById('newItemTitle').value = '';
+      document.getElementById('newItemPrice').value = '';
+      document.getElementById('newItemDesc').value = '';
+      document.getElementById('newItemImg').value = '';
+
+      showToast('New dessert item added!');
+    }
+
+    function deleteMenuItem(index) {
+      storeData.menu.splice(index, 1);
+      renderAdminMenuList();
+      renderMenu();
+      showToast('Item deleted.');
+    }
+
+    function setThemePreset(color) {
+      const root = document.documentElement;
+      if (color === 'pink') {
+        root.style.setProperty('--color-brand-500', '#ec4899');
+        root.style.setProperty('--color-brand-600', '#db2777');
+      } else if (color === 'rose') {
+        root.style.setProperty('--color-brand-500', '#f43f5e');
+        root.style.setProperty('--color-brand-600', '#e11d48');
+      } else if (color === 'amber') {
+        root.style.setProperty('--color-brand-500', '#f59e0b');
+        root.style.setProperty('--color-brand-600', '#d97706');
+      } else if (color === 'purple') {
+        root.style.setProperty('--color-brand-500', '#a855f7');
+        root.style.setProperty('--color-brand-600', '#9333ea');
+      }
+      showToast(`Theme updated to ${color}!`);
+    }
+
+    function saveAdminChanges() {
+      storeData.title = document.getElementById('adminStoreTitle').value.trim();
+      storeData.subtitle = document.getElementById('adminStoreSubtitle').value.trim();
+      storeData.announcement = document.getElementById('adminAnnouncement').value.trim();
+      storeData.email = document.getElementById('adminEmail').value.trim();
+      storeData.phone = document.getElementById('adminPhone').value.trim();
+
+      localStorage.setItem('giselis_store_data', JSON.stringify(storeData));
+      renderStoreData();
+      renderMenu();
+      showToast('All customizer changes saved!');
+      toggleAdminDrawer();
+    }
+
+    function resetAdminDefaults() {
+      if (confirm('Reset store customization back to defaults?')) {
+        localStorage.removeItem('giselis_store_data');
+        storeData = JSON.parse(JSON.stringify(DEFAULT_STORE));
+        renderStoreData();
+        renderMenu();
+        showToast('Reset to default settings.');
+      }
+    }
+
+    // --- UI HELPER FUNCTIONS ---
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      nav.classList.toggle('hidden');
+    }
+
+    function dismissAnnouncement() {
+      document.getElementById('announcementBanner').style.display = 'none';
+    }
+
+    function toggleFaq(index) {
+      const ans = document.getElementById(`faqAnswer-${index}`);
+      const icon = document.getElementById(`faqIcon-${index}`);
+      
+      if (ans.classList.contains('hidden')) {
+        ans.classList.remove('hidden');
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        ans.classList.add('hidden');
+        icon.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
